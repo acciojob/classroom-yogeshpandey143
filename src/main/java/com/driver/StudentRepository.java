@@ -12,11 +12,22 @@ import org.springframework.stereotype.Repository;
 public class StudentRepository {
 
 	
-	public Map<String,Student> studentMap = new HashMap<>();
-	public Map<String,Teacher> teacherMap = new HashMap<>();
-	public Map<String,List<String>> studentTeacherMap = new HashMap<>();
+	private Map<String,Student> studentMap;
+	private Map<String,Teacher> teacherMap;
+	private Map<String,List<String>> studentTeacherMap ;
 	
 	
+	public StudentRepository() {
+		super();
+		// TODO Auto-generated constructor stub
+	
+		   this.studentMap=new HashMap<>();
+	        this.teacherMap=new HashMap<>();
+	        this.studentTeacherMap=new HashMap<>();
+	}
+
+
+
 	public void addStudednt(Student student)
 	{
 	 studentMap.put(student.getName(), student);
@@ -34,8 +45,7 @@ public class StudentRepository {
 
 	        
 
-	        if(studentMap.containsKey(studentName)&& teacherMap.containsKey(teacherName)){
-
+	        if(studentMap.containsKey(studentName) && teacherMap.containsKey(teacherName)){
 	            List<String> currentStudentAndTeacher = new ArrayList<>();
 
 	            if(studentTeacherMap.containsKey(teacherName))
@@ -63,22 +73,19 @@ public class StudentRepository {
 	
 	  public List<String> getstudentsByTeacher(String teacherName)
 	  {
-		  List<String> list=  studentTeacherMap.get(teacherName);
 		  
-		  return list;
+		  if(studentTeacherMap.containsKey(teacherName))
+		 return studentTeacherMap.get(teacherName);
+		  
+		  return new ArrayList<>();
 	  }
 	  
 	  
 	  
 	  public List<String> getStudents()
 	  {
-			List<String> l = new ArrayList<>();
-			for( Map.Entry<String,Student> entry : studentMap.entrySet()) 
-			{
-				l.add(entry.getKey());
-				
-			}	
-			return l;
+		
+		  return new ArrayList<>(studentMap.keySet());
 	  }
 	  
 	  
