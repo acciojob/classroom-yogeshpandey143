@@ -57,7 +57,7 @@ public class StudentService {
 	}
 	
 	
-	public void deleteTeacherByName(String teacherName)
+	public void deleteTeacherByMyName(String teacherName)
 	{
 		studentRepository.deleteTeacher(teacherName);
 	}
