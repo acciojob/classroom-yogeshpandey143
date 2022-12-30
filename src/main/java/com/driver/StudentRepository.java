@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
@@ -91,7 +92,7 @@ public class StudentRepository {
 	  
 	  public void deleteTeacher(String teacherName)
 	  {
-	        List<String> students = new ArrayList<String>();
+	        List<String> students = new ArrayList<>();
 	        if(studentTeacherMap.containsKey(teacherName)){
 	            //1. Find the student names by director from the pair
 	            students = studentTeacherMap.get(teacherName);
@@ -117,8 +118,9 @@ public class StudentRepository {
 	
 	  public void deleteAllTeacher()
 	  {
-		HashSet<String> studentSet = new HashSet<>();
+		Set<String> studentSet = new HashSet<>();
 		
+		teacherMap= new HashMap<>();
 		
 		for(String teacherName:studentTeacherMap.keySet() )
 		{
